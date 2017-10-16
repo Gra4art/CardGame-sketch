@@ -26,7 +26,7 @@ class ServerSockets:
         Отправка сообщения указанному ip
 
         """
-        self.nick_ip[number][0].send('message'.encode("utf-8"))
+        pass
 
     def recv_message(self, ip=''):
         """
