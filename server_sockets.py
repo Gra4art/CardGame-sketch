@@ -5,7 +5,7 @@ class ServerSockets:
     def __init__(self, how_much_can_connect=2):
         # self.ips = how_ip_can_connect
         self.number_players = how_much_can_connect
-        self.nick_ip = {}
+        self.nick_ip = []
 
     def connect(self):
         """
@@ -19,14 +19,14 @@ class ServerSockets:
             conn, addr = sock.accept()
             data = conn.recv(1024)
             nickname = data.decode('utf-8')
-            self.nick_ip[nickname] = (conn, addr[0])
+            self.nick_ip.append((conn, addr[0], nickname))
 
-    def send_message(self, ip):
+    def send_message(self, number, message):
         """
         Отправка сообщения указанному ip
 
         """
-        pass
+        self.nick_ip[number][0].send('message'.encode("utf-8"))
 
     def recv_message(self, ip=''):
         """
